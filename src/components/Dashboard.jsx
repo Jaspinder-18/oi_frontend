@@ -116,17 +116,17 @@ const Dashboard = () => {
                 </div>
             )}
 
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold text-gray-800">OI Dashboard</h1>
-                <div className="flex items-center gap-4">
-                    <span className="text-sm text-gray-500 flex flex-col items-end">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-800">OI Dashboard</h1>
+                <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                    <span className="text-xs md:text-sm text-gray-500 flex flex-col items-start md:items-end order-3 md:order-1 w-full md:w-auto">
                         <span>Updated: {lastUpdated || 'Never'}</span>
                         {currentData?.data?.nseTimestamp && (
                             <span className="text-xs text-blue-600 font-semibold">NSE: {currentData.data.nseTimestamp}</span>
                         )}
                     </span>
 
-                    <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer select-none bg-white px-3 py-2 rounded border shadow-sm hover:bg-gray-50">
+                    <label className="flex items-center gap-2 text-xs md:text-sm text-gray-600 cursor-pointer select-none bg-white px-2 md:px-3 py-2 rounded border shadow-sm hover:bg-gray-50 order-2">
                         <input
                             type="checkbox"
                             checked={showClock}
@@ -139,7 +139,7 @@ const Dashboard = () => {
                     <select
                         value={symbol}
                         onChange={(e) => setSymbol(e.target.value)}
-                        className="p-2 border rounded shadow-sm bg-white"
+                        className="p-2 border rounded shadow-sm bg-white text-sm md:text-base flex-1 md:flex-none order-1"
                     >
                         <option value="NIFTY">NIFTY 50</option>
                         <option value="BANKNIFTY">BANKNIFTY</option>
@@ -148,41 +148,41 @@ const Dashboard = () => {
                     <button
                         onClick={() => { fetchData(); setTimeLeft(5); }}
                         disabled={loading}
-                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 min-w-[100px]"
+                        className="px-3 md:px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 min-w-[80px] md:min-w-[100px] text-sm md:text-base order-4 md:order-last"
                     >
-                        {loading ? 'Refreshing...' : `Refresh (${timeLeft}s)`}
+                        {loading ? '...' : `Refresh (${timeLeft}s)`}
                     </button>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div className="bg-white p-4 rounded shadow border-l-4 border-blue-500">
-                    <h3 className="text-gray-500 text-sm">Spot Price</h3>
-                    <p className="text-2xl font-bold">{spotPrice}</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
+                <div className="bg-white p-3 md:p-4 rounded shadow border-l-4 border-blue-500">
+                    <h3 className="text-gray-500 text-xs md:text-sm">Spot Price</h3>
+                    <p className="text-xl md:text-2xl font-bold">{spotPrice}</p>
                 </div>
-                <div className="bg-white p-4 rounded shadow border-l-4 border-green-500">
-                    <h3 className="text-gray-500 text-sm">PCR</h3>
-                    <p className="text-2xl font-bold">{pcr}</p>
+                <div className="bg-white p-3 md:p-4 rounded shadow border-l-4 border-green-500">
+                    <h3 className="text-gray-500 text-xs md:text-sm">PCR</h3>
+                    <p className="text-xl md:text-2xl font-bold">{pcr}</p>
                 </div>
-                <div className="bg-white p-4 rounded shadow border-l-4 border-red-500">
-                    <h3 className="text-gray-500 text-sm">Total CE OI</h3>
-                    <p className="text-2xl font-bold text-red-600">{totalCE.toLocaleString()}</p>
+                <div className="bg-white p-3 md:p-4 rounded shadow border-l-4 border-red-500">
+                    <h3 className="text-gray-500 text-xs md:text-sm">Total CE OI</h3>
+                    <p className="text-xl md:text-2xl font-bold text-red-600">{totalCE.toLocaleString()}</p>
                 </div>
-                <div className="bg-white p-4 rounded shadow border-l-4 border-teal-500">
-                    <h3 className="text-gray-500 text-sm">Total PE OI</h3>
-                    <p className="text-2xl font-bold text-teal-600">{totalPE.toLocaleString()}</p>
+                <div className="bg-white p-3 md:p-4 rounded shadow border-l-4 border-teal-500">
+                    <h3 className="text-gray-500 text-xs md:text-sm">Total PE OI</h3>
+                    <p className="text-xl md:text-2xl font-bold text-teal-600">{totalPE.toLocaleString()}</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 gap-6">
-                <div className="bg-white p-4 rounded shadow">
-                    <div className="flex justify-between items-center mb-4">
+                <div className="bg-white p-3 md:p-4 rounded shadow overflow-hidden">
+                    <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center mb-4 gap-4">
                         <h3 className="font-bold text-lg">Snapshot History</h3>
-                        <div className="flex gap-3 items-center">
-                            <div className="flex items-center gap-2 text-sm">
+                        <div className="flex flex-wrap gap-2 md:gap-3 items-center w-full xl:w-auto">
+                            <div className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
                                 <label className="text-gray-600">Strikes:</label>
                                 <select
-                                    className="border rounded px-2 py-1 text-sm bg-white"
+                                    className="border rounded px-1 md:px-2 py-1 bg-white"
                                     value={strikeCount}
                                     onChange={(e) => setStrikeCount(Number(e.target.value))}
                                 >
@@ -192,10 +192,10 @@ const Dashboard = () => {
                                     <option value={9}>9</option>
                                 </select>
                             </div>
-                            <div className="flex items-center gap-2 text-sm">
+                            <div className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
                                 <label className="text-gray-600">Date:</label>
                                 <select
-                                    className="border rounded px-2 py-1 text-sm bg-white"
+                                    className="border rounded px-1 md:px-2 py-1 bg-white"
                                     value={selectedDate}
                                     onChange={(e) => setSelectedDate(e.target.value)}
                                 >
@@ -205,17 +205,17 @@ const Dashboard = () => {
                                     <option value="">All Time</option>
                                 </select>
                             </div>
-                            <div className="flex items-center gap-2 text-sm">
+                            <div className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
                                 <label className="text-gray-600">Time:</label>
                                 <select
-                                    className="border rounded px-2 py-1 text-sm"
+                                    className="border rounded px-1 md:px-2 py-1"
                                     value={timeFilter}
                                     onChange={(e) => setTimeFilter(e.target.value)}
                                 >
-                                    <option value="1h">Last 1 Hour</option>
-                                    <option value="3h">Last 3 Hours</option>
-                                    <option value="6h">Last 6 Hours</option>
-                                    <option value="all">All Time</option>
+                                    <option value="1h">1 Hour</option>
+                                    <option value="3h">3 Hours</option>
+                                    <option value="6h">6 Hours</option>
+                                    <option value="all">All</option>
                                 </select>
                             </div>
                         </div>
